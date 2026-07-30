@@ -1,24 +1,21 @@
-# Brynlei's Reading Adventure
+# Brynlei's Reading Adventure v0.2
 
-A mobile-first Progressive Web App prototype.
+This is the playable Cookie Kingdom update.
 
-## Run locally
-Service workers require a web server. In this folder, run:
-python3 -m http.server 8000
+## Included
+- Animated Cookie Kingdom
+- Chef Cinnamon and Lady Licorice
+- Vocabulary words with text-to-speech
+- Original reading story
+- Four comprehension questions
+- Ingredient collection
+- Mixing and baking animations
+- Sound effects and mute button
+- Treasure chest reward
+- Working Star Shop
+- Purchases saved in My Collection
+- Starts with 150 stars
 
-Then open http://localhost:8000
-
-## Put it online
-Upload the entire folder to any HTTPS static host such as GitHub Pages, Netlify, Vercel, or Cloudflare Pages.
-
-## Current features
-- Gentle placement check
-- Vocabulary warm-up with spoken word playback
-- Reading passages and text-to-speech
-- Comprehension questions
-- XP, streak, level, progress map
-- Parent PIN and dashboard
-- Offline cache after first load
-- Local progress saved on the device
-
-Starter parent PIN: 2468
+## Publish it
+Upload these files to the existing GitHub repository and replace the older versions.
+Netlify should redeploy automatically after the commit.
