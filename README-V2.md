@@ -1,6 +1,6 @@
-# Cookie Kingdom v2 preview
+# Chef Cinnamon’s Reading Adventure preview
 
-This branch is an in-progress React/TypeScript rebuild. The production `main` branch is unchanged.
+This branch is an in-progress React/TypeScript rebuild of **Chef Cinnamon’s Reading Adventure**, set in **The Storybook Kingdom**. The production `main` branch is unchanged.
 
 ## Local preview
 
