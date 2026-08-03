@@ -1,0 +1,2 @@
+import type{SpeechRecognitionService,SpeechSessionResult}from'../types';
+export class NoSpeechRecognitionFallbackService implements SpeechRecognitionService{readonly kind='fallback' as const;private started=0;isAvailable(){return true}async start(){this.started=Date.now()}async stop():Promise<SpeechSessionResult>{return{transcript:'',durationSeconds:Math.max(1,(Date.now()-this.started)/1000),longPauses:0,supportedFallback:true}}cancel(){this.started=0}}
