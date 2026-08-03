@@ -1,0 +1,2 @@
+import{NoSpeechRecognitionFallbackService}from'../adapters/NoSpeechRecognitionFallbackService';import{WebSpeechRecognitionService}from'../adapters/WebSpeechRecognitionService';import type{SpeechRecognitionService}from'../types';
+export function createSpeechService(microphoneEnabled:boolean):SpeechRecognitionService{if(!microphoneEnabled)return new NoSpeechRecognitionFallbackService();const web=new WebSpeechRecognitionService();return web.isAvailable()?web:new NoSpeechRecognitionFallbackService()}
