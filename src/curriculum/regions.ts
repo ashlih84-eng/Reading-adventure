@@ -1,0 +1,23 @@
+import type{ReadingCompetency,ReadingSkill,RegionCurriculum}from'./types';
+type Seed=[name:string,competency:ReadingCompetency,goal:string,skills:ReadingSkill[]];
+const seeds:Seed[]=[
+ ['Sprinkle Meadows','foundational-decoding','I can read the words and understand what happened.',['letter-sound knowledge','short vowels','blends','digraphs','high-frequency words','reading short sentences','basic story understanding']],
+ ['Vanilla Village','sentence-fluency','I can read sentences smoothly and make them sound meaningful.',['long vowels','vowel teams','contractions','punctuation','phrased reading','expression']],
+ ['Gumdrop Gardens','longer-word-analysis','I can break apart long words and figure them out.',['syllables','prefixes','suffixes','base words','multisyllable decoding','word parts']],
+ ['Gingerbread Grove','main-idea-key-details','I can tell what a passage is mostly about and which details matter.',['topic','important details','summary','passage evidence']],
+ ['Marshmallow Marsh','cause-effect','I can explain why something happened and what happened because of it.',['event relationships','character choices','motivation','signal words']],
+ ['Chocolate Forest','inference-evidence','I can use story clues to understand what the author did not say directly.',['character traits','motivation','story clues','passage evidence','prediction']],
+ ['Caramel Crossing','informational-text','I can learn from a text and explain the important ideas.',['headings','captions','diagrams','text features','topic','domain vocabulary','written response']],
+ ['Cocoa Castle','third-grade-integration','I can read and understand a complete adventure on my own.',['phrased reading','vocabulary in context','topic','event relationships','story clues','passage evidence','written response','stamina']],
+ ['Toffee Tunnels','theme-point-of-view','I can explain a story’s message and whose view I am hearing.',['theme','narrator','perspective','passage evidence','summary']],
+ ['Peppermint Port','text-comparison-structure','I can compare how two texts explain or tell something.',['compare and contrast','chronology','event relationships','problem and solution','description','passage evidence']],
+ ['Cupcake Cliffs','complex-text-stamina','I can stay with a longer text and connect ideas from beginning to end.',['complex sentences','story clues','tracking ideas','stamina']],
+ ['Frosting Mountains','academic-vocabulary-morphology','I can use word parts and context to understand challenging words.',['Greek roots','Latin roots','prefixes','suffixes','multiple-meaning words','context clues','connotation']],
+ ['Truffle Territory','claims-reasons-evidence','I can identify what an author believes and how the author supports it.',['claims','reasons','passage evidence','opinion versus fact']],
+ ['Royal Recipe Archives','central-idea-source-analysis','I can explain the central idea and compare information from different sources.',['topic','objective summary','source comparison','structure','connotation','passage evidence']],
+ ['The Royal Bakery','sixth-grade-readiness','I can independently read, understand, and explain sixth-grade text.',['theme','topic','objective summary','passage evidence','source comparison','figurative meaning','claims','arguments','stamina']]
+];
+const regionOneMissions=['meadow-1','meadow-2','meadow-3','meadow-4','meadow-5'];
+export const REGION_CURRICULUM:RegionCurriculum[]=seeds.map(([name,competency,goal,skills],index)=>{const id=index+1,prior=seeds.slice(0,index).map(x=>x[1]);return{regionId:id,name,primaryCompetency:competency,childFriendlyGoal:goal,prerequisiteCompetencies:prior,supportingSkills:skills,missionIds:id===1?regionOneMissions:[],reviewMissionId:id===1?'meadow-review':`region-${id}-review`,villainChallengeId:id===1?'sprinkle-snatcher':`region-${id}-villain`,masteryCheckpointId:id===1?'meadow-checkpoint':`region-${id}-checkpoint`,masteryEvidence:['independent mission performance','review application','fresh checkpoint'],interventionOptions:['guided example','shorter text','listen then read','targeted word practice'],masteryThreshold:.8,checkpointRequirements:['fresh text','independent response','competency-aligned evidence'],masteryRequirements:{minimumIndependentMissions:3,requiredSkillEvidence:3,reviewRequired:true,villainChallengeRequired:true,checkpointRequired:true,...(id===1?{oralAccuracyMinimum:.8,comprehensionMinimum:.75}:{})}}});
+export const curriculumForRegion=(regionId:number)=>REGION_CURRICULUM.find(x=>x.regionId===regionId)!;
+export const regionForCompetency=(competency:ReadingCompetency)=>REGION_CURRICULUM.find(x=>x.primaryCompetency===competency)!;
