@@ -1,0 +1,3 @@
+.preview-badge{position:fixed;top:max(.45rem,env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:120;background:#352441;color:#fff4b5;border:2px solid #fff;border-radius:999px;padding:.35rem .8rem;font-size:.78rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 6px 18px #35244155;white-space:nowrap}
+body{padding-top:2.2rem}
+@media(max-width:520px){.preview-badge{font-size:.68rem;padding:.28rem .65rem}}

@@ -7,4 +7,6 @@ export default tseslint.config(
   ...tseslint.configs.recommended,
   {files:['**/*.{ts,tsx}'],languageOptions:{globals:{...globals.browser}},rules:{'react-hooks/exhaustive-deps':'off'}},
   {files:['public/sw.js'],languageOptions:{globals:{...globals.serviceworker}}},
+  {files:['worker/**/*.js'],languageOptions:{globals:{...globals.serviceworker}}},
+  {files:['scripts/**/*.mjs'],languageOptions:{globals:{...globals.node}}},
 );
