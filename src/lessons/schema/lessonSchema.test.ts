@@ -1,0 +1,2 @@
+import{describe,expect,it}from'vitest';import{SPRINKLE_MISSIONS}from'../data/sprinkleMeadows';import{lessonCollectionSchema}from'./lessonSchema';
+describe('lesson schema',()=>{it('runtime-validates every structured Sprinkle Meadows mission',()=>{const result=lessonCollectionSchema.safeParse(SPRINKLE_MISSIONS);expect(result.success).toBe(true);expect(SPRINKLE_MISSIONS.filter(x=>x.kind==='lesson')).toHaveLength(5)});it('contains varied activity types',()=>{expect(new Set(SPRINKLE_MISSIONS.flatMap(x=>x.activities.map(a=>a.type))).size).toBeGreaterThanOrEqual(8)})});
