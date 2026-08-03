@@ -1,0 +1,5 @@
+export type PracticeRewardReason='flagged-words'|'improved-score'|'intervention'|'listen-then-independent';
+export interface PracticeAward{lessonId:string;reason:PracticeRewardReason;stars:number;awardedAt:string;day:string}
+export interface PracticeRewardLedger{awards:PracticeAward[]}
+export const PRACTICE_REWARD_POLICY={starsPerAward:3,dailyStarLimit:12,perLessonDailyLimit:3}as const;
+export function awardPractice(ledger:PracticeRewardLedger,lessonId:string,reason:PracticeRewardReason,meaningful:boolean,now=new Date()){if(!meaningful)return{ledger,stars:0};const day=now.toISOString().slice(0,10),today=ledger.awards.filter(x=>x.day===day),lessonAwards=today.filter(x=>x.lessonId===lessonId);if(today.reduce((n,x)=>n+x.stars,0)>=PRACTICE_REWARD_POLICY.dailyStarLimit||lessonAwards.length>=PRACTICE_REWARD_POLICY.perLessonDailyLimit||lessonAwards.some(x=>x.reason===reason))return{ledger,stars:0};const award={lessonId,reason,stars:PRACTICE_REWARD_POLICY.starsPerAward,awardedAt:now.toISOString(),day};return{ledger:{awards:[...ledger.awards,award]},stars:award.stars}}
