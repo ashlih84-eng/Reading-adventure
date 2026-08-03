@@ -1,0 +1,3 @@
+import{beforeEach,describe,expect,it}from'vitest';import{newPlayer}from'../profiles/types';import{playerRepository}from'./playerRepository';
+const avatar={skinTone:'warm' as const,hairStyle:'short' as const,hairColor:'#222',outfit:'#639',glasses:false};
+describe('playerRepository',()=>{beforeEach(async()=>{for(const p of await playerRepository.list())await playerRepository.remove(p.id)});it('persists inventory independently for multiple players',async()=>{const a={...newPlayer('A',avatar),inventory:['pony']};const b=newPlayer('B',avatar);await playerRepository.save(a);await playerRepository.save(b);const rows=await playerRepository.list();expect(rows.find(x=>x.id===a.id)?.inventory).toEqual(['pony']);expect(rows.find(x=>x.id===b.id)?.inventory).toEqual([])})});
