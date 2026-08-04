@@ -1,0 +1,4 @@
+import type{ParentSettings}from'../../profiles/types';
+export type SceneSound='pickup'|'correct'|'return'|'color'|'celebrate'|'brook'|'meadow';
+const frequencies:Record<SceneSound,number>={pickup:440,correct:660,return:260,color:780,celebrate:880,brook:190,meadow:240};
+export function playSceneSound(sound:SceneSound,settings?:ParentSettings){if(settings?.masterMute||typeof AudioContext==='undefined')return;const context=new AudioContext(),osc=context.createOscillator(),gain=context.createGain(),ambient=sound==='brook'||sound==='meadow',duration=ambient?0.8:0.24;osc.type=ambient?'sine':'triangle';osc.frequency.value=frequencies[sound];gain.gain.value=(settings?.effectsVolume??.7)*.08;osc.connect(gain);gain.connect(context.destination);osc.start();gain.gain.exponentialRampToValueAtTime(.001,context.currentTime+duration);osc.stop(context.currentTime+duration)}

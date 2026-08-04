@@ -1,5 +1,5 @@
 const CACHE_PREFIX='chef-cinnamon-development-preview';
-const CACHE=`${CACHE_PREFIX}-f39defaf-v1`;
+const CACHE=`${CACHE_PREFIX}-missing-colors-v1`;
 const OFFLINE_SHELL=['./','./index.html','./manifest.webmanifest','./icons/app-icon-192.png','./icons/app-icon-512.png','./icons/app-icon-maskable-512.png','./icons/apple-touch-icon.png'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(OFFLINE_SHELL)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith(CACHE_PREFIX)&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});
