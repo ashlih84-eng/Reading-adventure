@@ -1,0 +1,3 @@
+import{describe,expect,it}from'vitest';import{newPlayer}from'../../profiles/types';import{recordLessonAttempt}from'../../lessons/engine/masteryEngine';
+const avatar={skinTone:'warm' as const,hairStyle:'waves' as const,hairColor:'#321',outfit:'#639',glasses:false};
+describe('guided versus independent mastery',()=>{it('keeps guided success while reserving mastery evidence for independent work',()=>{let player=newPlayer('Ari',avatar);player=recordLessonAttempt(player,'meadow-1',1,false);expect(player.completedLessons).toContain('meadow-1');expect(player.masteryByRegion?.[1].competencyEvidenceCount).toBe(0);player=recordLessonAttempt(player,'meadow-1',1,true);expect(player.masteryByRegion?.[1].competencyEvidenceCount).toBe(1)})});

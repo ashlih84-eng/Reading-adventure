@@ -2,7 +2,7 @@ export type ActivityType='read-aloud'|'word-recognition'|'sequencing'|'main-idea
 export interface VocabularyCard{word:string;pronunciation:string;syllables:string[];definition:string;example:string;visualCue?:string}
 export interface SceneHotspot{id:string;label:string;clue:string;correct?:boolean}
 export interface LessonActivity{id:string;type:ActivityType;prompt:string;targetSkill?:string;instruction?:string;options?:string[];answer?:number;evidenceText?:string;requiresOutsideKnowledge?:boolean;acceptedText?:string[];correctOrder?:string[];pairs?:Array<[string,string]>;vocabulary?:VocabularyCard;hotspots?:SceneHotspot[];categories?:Record<string,string[]>;worldChange?:string}
-export interface ActivityScore{activityId:string;score:number;correct:boolean;response:unknown;skillEvidence:string[];attempts?:number}
+export interface ActivityScore{activityId:string;score:number;correct:boolean;response:unknown;skillEvidence:string[];attempts?:number;guided?:boolean}
 export type MissionKind='lesson'|'review'|'villain'|'checkpoint';
 export interface Lesson{id:string;regionId:number;kind:MissionKind;title:string;mission:string;primaryCompetency:import('../../curriculum/types').ReadingCompetency;supportingSkill:string;readingLevel:import('../../curriculum/readingLevels').ReadingLevelProfile;scene:'meadow'|'bird'|'bridge'|'bakery'|'trail'|'map'|'gate';passage:string;activities:LessonActivity[];rewardStars:number;skills:string[]}
 export interface LessonAttempt{lessonId:string;score:number;passed:boolean;completedAt:string;skills:string[];primaryCompetency?:import('../../curriculum/types').ReadingCompetency;supportingSkill?:string;independent?:boolean}
